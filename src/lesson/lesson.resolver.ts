@@ -10,12 +10,19 @@ export class LessonResolver {
       private lessonService: LessonService,
     ) {}
 
+    //The Lesson Type needs to be in brasses to return all the lessons
+    @Query( returns => [LessonType])
+    lessons() {
+      return this.lessonService.getAllLessons();
+    }
+
     @Query( returns => LessonType)
     lesson(
       @Args('id') id: string,
     ) {
       return this.lessonService.getLesson(id);
     }
+
 
     @Mutation( returns => LessonType )
     createLesson(
